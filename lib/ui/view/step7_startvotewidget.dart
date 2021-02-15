@@ -78,7 +78,7 @@ class Startvotewidget extends StatelessWidget {
                         Get.to(Votemenuwidget());
                       },
                       child: Text(
-                        "투표시작하기",
+                        "투표시작하기!",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: AppColors.primaryText,
