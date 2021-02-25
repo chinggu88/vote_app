@@ -21,4 +21,14 @@ class VoteAudio extends GetxController {
     // advancedPlayer.setReleaseMode(ReleaseMode.STOP);
     advancedPlayer.stop();
   }
+
+  void playresultsound() async {
+    bytes = await (await player.load('resultsound.mp3')).readAsBytes();
+    reultaudio.playBytes(bytes);
+  }
+
+  void stopresultsound() async {
+    // advancedPlayer.setReleaseMode(ReleaseMode.STOP);
+    reultaudio.stop();
+  }
 }

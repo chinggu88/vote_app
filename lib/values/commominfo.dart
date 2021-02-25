@@ -7,6 +7,8 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:random_color/random_color.dart';
+import 'package:voteapp/ui/view/step11_resultwidget.dart';
+import 'package:voteapp/ui/view/step1_startvote.dart';
 import 'package:voteapp/ui/view/step8_votemenu.dart';
 import 'package:voteapp/values/audio.dart';
 
@@ -34,7 +36,8 @@ class Commoninfo extends GetxController {
   List<double> realvote = [];
   //실시간투표바
   List<double> realvoterate = [];
-
+  //기권chk
+  bool chk = false;
   //그래프 넓이 계산
   double setvotegraphwidth(BuildContext context) {
     votewidth = ((MediaQuery.of(context).size.width -
@@ -89,7 +92,7 @@ class Commoninfo extends GetxController {
     //투표 최대값
 
     int maxvote = setmaxvote(templist);
-    Timer.periodic(Duration(milliseconds: 700), (Timer t) {
+    Timer.periodic(Duration(milliseconds: 900), (Timer t) {
       auidoinfo.playsound();
       templist.forEach((element) {
         if (element != realvote[e]) {
@@ -106,7 +109,7 @@ class Commoninfo extends GetxController {
       if (listEquals(realvote, templist)) {
         //결과집계
         resultvote(templist);
-
+        auidoinfo.playresultsound();
         t.cancel();
         //popup
         //동점일경우 아닐경우
@@ -116,13 +119,35 @@ class Commoninfo extends GetxController {
             builder: (_) => AssetGiffyDialog(
               image: Image.asset('assets/images/finalresult.gif'),
               title: Text(
-                '${finallist[0].name} \n\n ${finallist[0].vote}표',
+                '최다득표\n${finallist[0].name} \n\n ${finallist[0].vote}표',
                 style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
               ),
               onlyCancelButton: true,
+              buttonCancelText: Text("결과보기"),
+              onCancelButtonPressed: () {
+                // Get.off(Resultwidget());
+                Get.back();
+              },
             ),
           );
-        } else if (finallist.length > 1) {}
+        } else if (finallist.length > 1) {
+          showDialog(
+            context: context,
+            builder: (_) => AssetGiffyDialog(
+              image: Image.asset('assets/images/finalresult.gif'),
+              title: Text(
+                '동점입니다.',
+                style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
+              ),
+              onlyOkButton: true,
+              buttonCancelText: Text("다시"),
+              buttonOkText: Text("결과보기"),
+              onOkButtonPressed: () {
+                Get.back();
+              },
+            ),
+          );
+        }
       }
       auidoinfo.stopsound();
     });
@@ -180,13 +205,12 @@ class Commoninfo extends GetxController {
     return votecnt;
   }
 
-  checklisttrue(int index) {
-    int i = 0;
-    checklist.forEach((e) {
-      checklist[i] = false;
-      i++;
-    });
-    checklist[index] = true;
+  checklisttrue(bool inputchk) {
+    if (inputchk == false) {
+      chk = false;
+    } else {
+      chk = true;
+    }
     update();
   }
 
@@ -246,21 +270,29 @@ class Commoninfo extends GetxController {
   }
 
   Color selectcolor(randomColor) {
+    int i = 0;
     Color colors =
         randomColor.randomColor(colorBrightness: ColorBrightness.dark);
+    candidatelist.forEach((element) {
+      if (colors == candidatelist[i].color) {
+        colors = randomColor.randomColor(colorBrightness: ColorBrightness.dark);
+      }
+      i++;
+    });
     return colors;
   }
 
   aaaaa() {
+    subject = "테스트투표입니다.";
     RandomColor _randomColor = RandomColor();
     candidatelist
-        .add(Candidateinfo(0, '유재석', selectcolor(_randomColor), 20, 0.0));
+        .add(Candidateinfo(0, '유재석', selectcolor(_randomColor), 14, 0.0));
     candidatelist
-        .add(Candidateinfo(1, '정주나', selectcolor(_randomColor), 5, 0.0));
+        .add(Candidateinfo(1, '정주나', selectcolor(_randomColor), 10, 0.0));
     candidatelist
         .add(Candidateinfo(2, '노홍철', selectcolor(_randomColor), 12, 0.0));
     candidatelist
-        .add(Candidateinfo(3, '정형돈', selectcolor(_randomColor), 15, 0.0));
+        .add(Candidateinfo(3, '정형돈', selectcolor(_randomColor), 14, 0.0));
     candidatelist
         .add(Candidateinfo(4, '박명수', selectcolor(_randomColor), 7, 0.0));
     votecnt = (20 + 5 + 12 + 15 + 7);

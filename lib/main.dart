@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:voteapp/test.dart';
 import 'package:voteapp/ui/view/step10_voteinfowidget.dart';
+import 'package:voteapp/ui/view/step11_resultwidget.dart';
 import 'package:voteapp/ui/view/step1_startvote.dart';
 import 'package:voteapp/ui/view/step2_setvotewidget.dart';
 import 'package:voteapp/ui/view/step3_setnamewidget.dart';
@@ -17,7 +18,7 @@ void main() {
   runApp(GetMaterialApp(
     // home: Voteresultwidget(),
     home: Startwidget(),
-    // home: Test(),
+    // home: Resultwidget(),
     getPages: [
       GetPage(
         name: 'Setvotewidget',
@@ -54,6 +55,10 @@ void main() {
       GetPage(
         name: 'Voteresultwidget',
         page: () => Voteresultwidget(),
+      ),
+      GetPage(
+        name: 'Resultwidget',
+        page: () => Resultwidget(),
       ),
     ],
   ));

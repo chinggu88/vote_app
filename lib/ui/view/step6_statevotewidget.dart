@@ -16,6 +16,7 @@ import 'package:voteapp/values/radii.dart';
 import 'package:voteapp/values/shadows.dart';
 
 class Statevotewidget extends StatelessWidget {
+  final info = Get.put(Commoninfo());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,19 +33,13 @@ class Statevotewidget extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.015,
                   child: Align(
                     alignment: Alignment.topLeft,
-                    child: Positioned(
-                      left: 20,
-                      top: 61,
-                      right: 19,
-                      bottom: 80,
-                      child: Text(
-                        "  Step 5\n  확인",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: AppColors.primaryText,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 30,
-                        ),
+                    child: Text(
+                      "  Step 5\n  확인",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: AppColors.primaryText,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 30,
                       ),
                     ),
                   ),
@@ -80,7 +75,6 @@ class Statevotewidget extends StatelessWidget {
                             Text(
                               _.subject,
                               style: TextStyle(
-                                color: Color.fromARGB(255, 86, 212, 226),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 40,
                               ),
@@ -128,7 +122,6 @@ class Statevotewidget extends StatelessWidget {
                             Text(
                               _.candidatelist.length.toString(),
                               style: TextStyle(
-                                color: Color.fromARGB(255, 86, 212, 226),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 40,
                               ),
@@ -176,7 +169,6 @@ class Statevotewidget extends StatelessWidget {
                             Text(
                               _.votecnt.toString(),
                               style: TextStyle(
-                                color: Color.fromARGB(255, 86, 212, 226),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 40,
                               ),
@@ -282,7 +274,7 @@ class Statevotewidget extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: MediaQuery.of(context).size.height * 0.05,
+                  bottom: MediaQuery.of(context).size.height * 0.06,
                   left: MediaQuery.of(context).size.height * 0.035,
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -324,6 +316,9 @@ class Statevotewidget extends StatelessWidget {
                                       FlatButton(
                                         child: Text("재설정"),
                                         onPressed: () {
+                                          info.resettempvoteincrement();
+                                          info.resetcandidatelist();
+                                          info.checklisttrue(true);
                                           Get.offAll(Setvotewidget());
                                         },
                                       )

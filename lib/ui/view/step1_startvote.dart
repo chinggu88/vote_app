@@ -8,6 +8,7 @@
 
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:get/get.dart';
@@ -23,6 +24,8 @@ class Startwidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ad.init();
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return Scaffold(
         body: Container(
       height: MediaQuery.of(context).size.height,

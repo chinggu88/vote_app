@@ -34,19 +34,13 @@ class Setnamewidget extends StatelessWidget {
                 left: MediaQuery.of(context).size.width * 0.015,
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Positioned(
-                    left: 20,
-                    top: 61,
-                    right: 19,
-                    bottom: 80,
-                    child: Text(
-                      "  Step 2\n  투표하는 사람은 몇 명인가요?",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 30,
-                      ),
+                  child: Text(
+                    "  Step 2\n  투표하는 사람은 몇 명인가요?",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: AppColors.primaryText,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 30,
                     ),
                   ),
                 ),

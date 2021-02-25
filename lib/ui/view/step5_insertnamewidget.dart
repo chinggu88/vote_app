@@ -20,7 +20,8 @@ class Insertnamewidget extends StatelessWidget {
   TextEditingController namelist = new TextEditingController();
   final info = Get.put(Commoninfo());
   RandomColor _randomColor = RandomColor();
-
+  //기권 chk
+  bool chk = false;
   @override
   Widget build(BuildContext context) {
     // _randomColor.randomColor(colorBrightness: ColorBrightness.dark)
@@ -38,19 +39,13 @@ class Insertnamewidget extends StatelessWidget {
                 left: MediaQuery.of(context).size.width * 0.015,
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Positioned(
-                    left: 20,
-                    top: 61,
-                    right: 19,
-                    bottom: 80,
-                    child: Text(
-                      "  Step 4\n  후보자 이름은 무엇인가요?",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 30,
-                      ),
+                  child: Text(
+                    "  Step 4\n  후보자 이름은 무엇인가요?",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: AppColors.primaryText,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 30,
                     ),
                   ),
                 ),
@@ -66,7 +61,7 @@ class Insertnamewidget extends StatelessWidget {
                       style: TextStyle(
                         color: Color.fromARGB(255, 255, 255, 255),
                         fontWeight: FontWeight.w400,
-                        fontSize: 70,
+                        fontSize: 55,
                       ),
                     );
                   },
@@ -97,7 +92,7 @@ class Insertnamewidget extends StatelessWidget {
                 left: MediaQuery.of(context).size.width * 0.1,
                 child: Align(
                   child: Container(
-                    width: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 86, 212, 226),
                       boxShadow: [
@@ -164,7 +159,7 @@ class Insertnamewidget extends StatelessWidget {
                 right: MediaQuery.of(context).size.width * 0.1,
                 child: Align(
                   child: Container(
-                    width: MediaQuery.of(context).size.height * 0.2,
+                    width: MediaQuery.of(context).size.width * 0.35,
                     decoration: BoxDecoration(
                       color: Color.fromARGB(255, 86, 212, 226),
                       boxShadow: [
@@ -267,6 +262,31 @@ class Insertnamewidget extends StatelessWidget {
                   ),
                 ),
               ),
+              GetBuilder<Commoninfo>(builder: (_) {
+                return Positioned(
+                  bottom: MediaQuery.of(context).size.height * 0.17,
+                  left: MediaQuery.of(context).size.width * 0.35,
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: _.chk,
+                        onChanged: (value) {
+                          info.checklisttrue(value);
+                          // print(value);
+                        },
+                      ),
+                      Text(
+                        "기권",
+                        style: TextStyle(
+                          color: AppColors.primaryText,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 22,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
               Positioned(
                 bottom: MediaQuery.of(context).size.height * 0.07,
                 left: MediaQuery.of(context).size.height * 0.035,
@@ -291,7 +311,13 @@ class Insertnamewidget extends StatelessWidget {
                           onPressed: () {
                             if (info.candidatelist.length ==
                                 info.candidatenum) {
+                              if (info.chk == true) {
+                                Color rcolor = info.selectcolor(_randomColor);
+                                info.addcandidatelist(Candidateinfo(
+                                    info.candidatenum, "기권", rcolor, 0, 0.0));
+                              }
                               info.tempvotecnt = 0;
+
                               Get.offAll(Statevotewidget());
                             } else {
                               Get.snackbar('주의', '투표자를 입력해주세요');

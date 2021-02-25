@@ -29,7 +29,6 @@ class Voteresultwidget extends StatelessWidget {
     //test
     // info.aaaaa();
     // info.setrealvote();
-    print(info.candidatelist.length);
     return Scaffold(
       body: GetBuilder<Commoninfo>(
         builder: (_) {
@@ -46,26 +45,20 @@ class Voteresultwidget extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.015,
                   child: Align(
                     alignment: Alignment.topCenter,
-                    child: Positioned(
-                      left: 20,
-                      top: 61,
-                      right: 19,
-                      bottom: 80,
-                      child: GetBuilder<Commoninfo>(builder: (_) {
-                        return Container(
-                          alignment: Alignment.topCenter,
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            _.subject.toString(),
-                            style: TextStyle(
-                              color: AppColors.primaryText,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 40,
-                            ),
+                    child: GetBuilder<Commoninfo>(builder: (_) {
+                      return Container(
+                        alignment: Alignment.topCenter,
+                        width: MediaQuery.of(context).size.width,
+                        child: Text(
+                          _.subject.toString(),
+                          style: TextStyle(
+                            color: AppColors.primaryText,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 40,
                           ),
-                        );
-                      }),
-                    ),
+                        ),
+                      );
+                    }),
                   ),
                 ),
                 Positioned(
@@ -144,7 +137,6 @@ class Voteresultwidget extends StatelessWidget {
     int chk = 0;
 
     common.candidatelist.forEach((element) {
-      print(element.name);
       graphs.add(
         Stack(
           alignment: Alignment.bottomCenter,

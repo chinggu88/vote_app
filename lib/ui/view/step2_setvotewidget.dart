@@ -37,41 +37,37 @@ class Setvotewidget extends StatelessWidget {
                 left: MediaQuery.of(context).size.width * 0.015,
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Positioned(
-                    left: 20,
-                    top: 61,
-                    right: 19,
-                    bottom: 80,
-                    child: Text(
-                      "  Step 1\n  무엇을 정하는 투표인가요?",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 30,
-                      ),
+                  child: Text(
+                    "  Step 1\n  무엇을 정하는 투표인가요?",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: AppColors.primaryText,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 30,
                     ),
                   ),
                 ),
               ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                alignment: Alignment.bottomCenter,
-                child: TextField(
-                  controller: subject,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal),
-                        gapPadding: 8.0),
-                    labelText: '투표 주제를 입력해주세요',
-                    labelStyle: TextStyle(color: Colors.white, fontSize: 20),
-                    fillColor: Colors.amberAccent,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
+              Positioned(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  alignment: Alignment.bottomCenter,
+                  child: TextField(
+                    controller: subject,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal),
+                          gapPadding: 8.0),
+                      labelText: '투표 주제를 입력해주세요',
+                      labelStyle: TextStyle(color: Colors.white, fontSize: 20),
+                      fillColor: Colors.amberAccent,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
                     ),
+                    style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
-                  style: TextStyle(color: Colors.white, fontSize: 40),
                 ),
               ),
               Positioned(
@@ -87,38 +83,32 @@ class Setvotewidget extends StatelessWidget {
                     ],
                     borderRadius: Radii.k30pxRadius,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        // margin: EdgeInsets.only(left: 91),
-                        child: FlatButton(
-                          onPressed: () {
-                            if (subject.text.length <= 0) {
-                              Get.snackbar(
-                                "주의",
-                                "투표명을 입력해주세요",
-                                colorText: Colors.white,
-                              );
-                            } else {
-                              info.subject = subject.text;
-                              Get.to(Setnamewidget());
-                            }
-                          },
-                          child: Text(
-                            "다음 단계로 넘어가기",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: AppColors.primaryText,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 22,
-                            ),
-                          ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    // margin: EdgeInsets.only(left: 91),
+                    child: FlatButton(
+                      onPressed: () {
+                        if (subject.text.length <= 0) {
+                          Get.snackbar(
+                            "주의",
+                            "투표명을 입력해주세요",
+                            colorText: Colors.white,
+                          );
+                        } else {
+                          info.subject = subject.text;
+                          Get.to(Setnamewidget());
+                        }
+                      },
+                      child: Text(
+                        "다음 단계로 넘어가기",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppColors.primaryText,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 22,
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -141,120 +131,4 @@ class Setvotewidget extends StatelessWidget {
           )),
     );
   }
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Container(
-  //       constraints: BoxConstraints.expand(),
-  //       decoration: BoxDecoration(
-  //         color: Color.fromARGB(255, 24, 38, 155),
-  //       ),
-  //       child: Stack(
-  //         alignment: Alignment.center,
-  //         children: [
-  //           Positioned(
-  //             left: 20,
-  //             top: 61,
-  //             right: 19,
-  //             bottom: 80,
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.stretch,
-  //               children: [
-  //                 Align(
-  //                   alignment: Alignment.topLeft,
-  //                   child: Text(
-  //                     "Step 1\n무엇을 정하는 투표인가요?",
-  //                     textAlign: TextAlign.left,
-  //                     style: TextStyle(
-  //                       color: AppColors.primaryText,
-  //                       fontWeight: FontWeight.w400,
-  //                       fontSize: 22,
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 TextField(),
-  //                 Align(
-  //                   alignment: Alignment.topLeft,
-  //                   child: Container(
-  //                     margin: EdgeInsets.only(left: 1, top: 267),
-  //                     child: Text(
-  //                       "투표이름을 입력하세요",
-  //                       textAlign: TextAlign.left,
-  //                       style: TextStyle(
-  //                         color: Color.fromARGB(255, 151, 140, 140),
-  //                         fontWeight: FontWeight.w400,
-  //                         fontSize: 15,
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 Spacer(),
-  //                 Container(
-  //                   height: 61,
-  //                   margin: EdgeInsets.only(bottom: 27),
-  //                   decoration: BoxDecoration(
-  //                     color: AppColors.primaryBackground,
-  //                     boxShadow: [
-  //                       Shadows.primaryShadow,
-  //                     ],
-  //                     borderRadius: Radii.k30pxRadius,
-  //                   ),
-  //                   child: Column(
-  //                     mainAxisAlignment: MainAxisAlignment.center,
-  //                     crossAxisAlignment: CrossAxisAlignment.start,
-  //                     children: [
-  //                       Container(
-  //                         margin: EdgeInsets.only(left: 92),
-  //                         child: FlatButton(
-  //                           onPressed: () =>
-  //                               Navigator.pushNamed(context, "/setnamewidget"),
-  //                           child: Text(
-  //                             "투표시작하기",
-  //                             textAlign: TextAlign.left,
-  //                             style: TextStyle(
-  //                               color: AppColors.primaryText,
-  //                               fontWeight: FontWeight.w400,
-  //                               fontSize: 22,
-  //                             ),
-  //                           ),
-  //                         ),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //                 Align(
-  //                   alignment: Alignment.topCenter,
-  //                   child: Container(
-  //                     width: 91,
-  //                     height: 15,
-  //                     margin: EdgeInsets.only(bottom: 26),
-  //                     child: Image.asset(
-  //                       "assets/images/group-5.png",
-  //                       fit: BoxFit.none,
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 Align(
-  //                   alignment: Alignment.topRight,
-  //                   child: Container(
-  //                     width: 4,
-  //                     height: 1,
-  //                     margin: EdgeInsets.only(right: 100),
-  //                     decoration: BoxDecoration(
-  //                       color: AppColors.primaryElement,
-  //                       border: Border.fromBorderSide(Borders.primaryBorder),
-  //                       boxShadow: [
-  //                         Shadows.secondaryShadow,
-  //                       ],
-  //                     ),
-  //                     child: Container(),
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }

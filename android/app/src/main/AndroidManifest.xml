@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iksun.voteapp">
    <application
-        android:label="voteapp"
+        android:label="학급투표"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -40,6 +40,6 @@
            //google admob
            <meta-data
                android:name="com.google.android.gms.ads.APPLICATION_ID"
-               android:value="ca-app-pub-3940256099942544~3347511713"/>
+               android:value="ca-app-pub-5179253276570325~2500844526"/>
     </application>
 </manifest>

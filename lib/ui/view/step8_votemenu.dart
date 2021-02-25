@@ -34,19 +34,13 @@ class Votemenuwidget extends StatelessWidget {
                 left: MediaQuery.of(context).size.width * 0.015,
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Positioned(
-                    left: 20,
-                    top: 61,
-                    right: 19,
-                    bottom: 80,
-                    child: Text(
-                      "  마음에 드는 \n  친구에게 투표하세요.",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: AppColors.primaryText,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 30,
-                      ),
+                  child: Text(
+                    "  마음에 드는 \n  친구에게 투표하세요.",
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      color: AppColors.primaryText,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 30,
                     ),
                   ),
                 ),
@@ -65,47 +59,53 @@ class Votemenuwidget extends StatelessWidget {
                         itemCount: _.candidatelist.length,
                         itemBuilder: (context, index) {
                           return Center(
-                            child: Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                int temp = info.discountvote(
+                                    _.candidatelist[index].number);
+                                if (temp == 0) {
+                                  info.setrealvote();
+                                  Get.to(Voteresultwidget());
+                                } else {
+                                  Get.to(Endvotewidget());
+                                }
+                              },
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                height: 50,
-                                margin: EdgeInsets.only(top: 10),
-                                decoration: BoxDecoration(
-                                  color: _.candidatelist[index].color,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromARGB(41, 0, 0, 0),
-                                      offset: Offset(3, 3),
-                                      blurRadius: 0,
-                                    ),
-                                  ],
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16)),
-                                ),
-                                child: Row(
-                                  // mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Checkbox(
-                                      value: _.checklist[index],
-                                      onChanged: (value) {
-                                        votechk = index;
-                                        info.checklisttrue(index);
-                                      },
-                                    ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        _.candidatelist[index].name,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 20,
+                                child: Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  height: 50,
+                                  margin: EdgeInsets.only(top: 10),
+                                  decoration: BoxDecoration(
+                                    color: _.candidatelist[index].color,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color.fromARGB(41, 0, 0, 0),
+                                        offset: Offset(3, 3),
+                                        blurRadius: 0,
+                                      ),
+                                    ],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(16)),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          _.candidatelist[index].name,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 30,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -135,63 +135,63 @@ class Votemenuwidget extends StatelessWidget {
                   },
                 ),
               ),
-              Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.02,
-                left: MediaQuery.of(context).size.height * 0.035,
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryBackground,
-                    boxShadow: [
-                      Shadows.primaryShadow,
-                    ],
-                    borderRadius: Radii.k30pxRadius,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: FlatButton(
-                          onPressed: () {
-                            int chk = 0;
-                            info.checklist.forEach((element) {
-                              if (element == true) chk++;
-                            });
-                            if (chk == 0) {
-                              Get.snackbar(
-                                "경고",
-                                '투표할 친구를 선택해주세요',
-                                colorText: Colors.white,
-                              );
-                            } else {
-                              int temp = info.discountvote(votechk);
-                              if (temp == 0) {
-                                info.setrealvote();
-                                Get.to(Voteresultwidget());
-                              } else {
-                                Get.to(Endvotewidget());
-                              }
-                              // Get.to(Voteresultwidget());
-                            }
-                          },
-                          child: Text(
-                            "투표하기",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: AppColors.primaryText,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 22,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Positioned(
+              //   bottom: MediaQuery.of(context).size.height * 0.02,
+              //   left: MediaQuery.of(context).size.height * 0.035,
+              //   child: Container(
+              //     width: MediaQuery.of(context).size.width * 0.8,
+              //     margin: EdgeInsets.all(20),
+              //     decoration: BoxDecoration(
+              //       color: AppColors.primaryBackground,
+              //       boxShadow: [
+              //         Shadows.primaryShadow,
+              //       ],
+              //       borderRadius: Radii.k30pxRadius,
+              //     ),
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Container(
+              //           alignment: Alignment.center,
+              //           child: FlatButton(
+              //             onPressed: () {
+              //               int chk = 0;
+              //               info.checklist.forEach((element) {
+              //                 if (element == true) chk++;
+              //               });
+              //               if (chk == 0) {
+              //                 Get.snackbar(
+              //                   "경고",
+              //                   '투표할 친구를 선택해주세요',
+              //                   colorText: Colors.white,
+              //                 );
+              //               } else {
+              //                 int temp = info.discountvote(votechk);
+              //                 if (temp == 0) {
+              //                   info.setrealvote();
+              //                   Get.to(Voteresultwidget());
+              //                 } else {
+              //                   Get.to(Endvotewidget());
+              //                 }
+              //                 // Get.to(Voteresultwidget());
+              //               }
+              //             },
+              //             child: Text(
+              //               "투표하기",
+              //               textAlign: TextAlign.left,
+              //               style: TextStyle(
+              //                 color: AppColors.primaryText,
+              //                 fontWeight: FontWeight.w400,
+              //                 fontSize: 22,
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ));
