@@ -268,12 +268,17 @@ class Insertnamewidget extends StatelessWidget {
                   left: MediaQuery.of(context).size.width * 0.35,
                   child: Row(
                     children: [
-                      Checkbox(
-                        value: _.chk,
-                        onChanged: (value) {
-                          info.checklisttrue(value);
-                          // print(value);
-                        },
+                      Theme(
+                        data: Theme.of(context).copyWith(
+                          unselectedWidgetColor: Colors.white,
+                        ),
+                        child: Checkbox(
+                          value: _.chk,
+                          onChanged: (value) {
+                            info.checklisttrue(value);
+                            // print(value);
+                          },
+                        ),
                       ),
                       Text(
                         "기권",
@@ -318,7 +323,7 @@ class Insertnamewidget extends StatelessWidget {
                               }
                               info.tempvotecnt = 0;
 
-                              Get.offAll(Statevotewidget());
+                              Get.to(Statevotewidget());
                             } else {
                               Get.snackbar('주의', '투표자를 입력해주세요');
                             }

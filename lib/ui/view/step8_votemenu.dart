@@ -35,7 +35,7 @@ class Votemenuwidget extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    "  마음에 드는 \n  친구에게 투표하세요.",
+                    "  항목을 터치하면\n  자동으로 투표가 됩니다.",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: AppColors.primaryText,
@@ -128,7 +128,7 @@ class Votemenuwidget extends StatelessWidget {
                         style: TextStyle(
                           color: AppColors.primaryText,
                           fontWeight: FontWeight.w400,
-                          fontSize: 22,
+                          fontSize: 25,
                         ),
                       ),
                     );

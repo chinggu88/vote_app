@@ -38,6 +38,36 @@ class Commoninfo extends GetxController {
   List<double> realvoterate = [];
   //기권chk
   bool chk = false;
+  //결과chk
+  bool resultchk = false;
+
+  init() {
+    subject = "";
+    candidatenum = 0;
+    finalvote = 0;
+    votecnt = 0;
+    tempvotecnt = 0;
+    //후보
+    candidatelist.clear();
+    //결과표
+    finallist.clear();
+    checklist.clear();
+    counttimer = 3;
+
+    //그래프넓이
+    votewidth = 0;
+    //그래프높이
+    voteheight = 0;
+    //실시간투표수
+    realvote.clear();
+    //실시간투표바
+    realvoterate.clear();
+    //기권chk
+    chk = false;
+    //결과chk
+    resultchk = false;
+  }
+
   //그래프 넓이 계산
   double setvotegraphwidth(BuildContext context) {
     votewidth = ((MediaQuery.of(context).size.width -
@@ -64,6 +94,8 @@ class Commoninfo extends GetxController {
 
   //결과 화면 셋팅
   setrealvote() {
+    realvote.clear();
+    realvoterate.clear();
     candidatelist.forEach((element) {
       realvote.add(0.0);
       realvoterate.add(0.0);
@@ -149,8 +181,11 @@ class Commoninfo extends GetxController {
           );
         }
       }
+
       auidoinfo.stopsound();
     });
+    resultchk = true;
+    update();
     return true;
   }
 

@@ -11,6 +11,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:voteapp/ui/view/step1_startvote.dart';
 import 'package:voteapp/values/colors.dart';
 import 'package:voteapp/values/commominfo.dart';
 import 'package:voteapp/values/radii.dart';
@@ -83,45 +84,127 @@ class Voteresultwidget extends StatelessWidget {
                     },
                   ),
                 ),
-                Positioned(
-                  bottom: MediaQuery.of(context).size.height * 0.02,
-                  // left: MediaQuery.of(context).size.height * 0.035,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width * 0.1),
-                    // alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryBackground,
-                      boxShadow: [
-                        Shadows.primaryShadow,
-                      ],
-                      borderRadius: Radii.k30pxRadius,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          child: FlatButton(
-                            onPressed: () {
-                              info.setvoteani(context);
-                            },
-                            child: Text(
-                              "결과보기",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: AppColors.primaryText,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 22,
+                GetBuilder<Commoninfo>(
+                  builder: (_) {
+                    return _.resultchk != false
+                        ? Positioned(
+                            bottom: MediaQuery.of(context).size.height * 0.02,
+                            child: Container(
+                              // width: MediaQuery.of(context).size.width * 0.8,
+                              margin: EdgeInsets.only(
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.1),
+                              // alignment: Alignment.center,
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.only(left: 50, right: 50),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryBackground,
+                                      boxShadow: [
+                                        Shadows.primaryShadow,
+                                      ],
+                                      borderRadius: Radii.k30pxRadius,
+                                    ),
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        info.init();
+                                        Get.off(Startwidget());
+                                      },
+                                      child: Text(
+                                        "재투표",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: AppColors.primaryText,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding:
+                                        EdgeInsets.only(left: 50, right: 50),
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primaryBackground,
+                                      boxShadow: [
+                                        Shadows.primaryShadow,
+                                      ],
+                                      borderRadius: Radii.k30pxRadius,
+                                    ),
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        SystemChannels.platform
+                                            .invokeListMethod(
+                                                'SystemNavigator.pop');
+                                      },
+                                      child: Text(
+                                        "종료하기",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: AppColors.primaryText,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                          )
+                        : Positioned(
+                            bottom: MediaQuery.of(context).size.height * 0.02,
+                            // left: MediaQuery.of(context).size.height * 0.035,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              margin: EdgeInsets.only(
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.1),
+                              // alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryBackground,
+                                boxShadow: [
+                                  Shadows.primaryShadow,
+                                ],
+                                borderRadius: Radii.k30pxRadius,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: FlatButton(
+                                      onPressed: () {
+                                        info.setvoteani(context);
+                                      },
+                                      child: Text(
+                                        "결과보기",
+                                        textAlign: TextAlign.left,
+                                        style: TextStyle(
+                                          color: AppColors.primaryText,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 22,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                  },
                 ),
               ],
             ),

@@ -319,6 +319,7 @@ class Statevotewidget extends StatelessWidget {
                                           info.resettempvoteincrement();
                                           info.resetcandidatelist();
                                           info.checklisttrue(true);
+                                          info.init();
                                           Get.offAll(Setvotewidget());
                                         },
                                       )

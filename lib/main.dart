@@ -18,7 +18,6 @@ void main() {
   runApp(GetMaterialApp(
     // home: Voteresultwidget(),
     home: Startwidget(),
-    // home: Resultwidget(),
     getPages: [
       GetPage(
         name: 'Setvotewidget',
